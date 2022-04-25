@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">DemoCreditReport</string>
+    <string name="your_credit_score_is_body">Your credit score is</string>
+    <string name="your_credit_report_title">Your Credit Report</string>
+</resources>

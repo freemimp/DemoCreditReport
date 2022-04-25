@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CreditReportPointsView">
+        <attr name="innerArcLineWidth" format="dimension" />
+        <attr name="outerArcLineWidth" format="dimension" />
+        <attr name="circleBackgroundColor" format="reference" />
+        <attr name="innerArcColor" format="reference" />
+        <attr name="outerArcColor" format="reference" />
+    </declare-styleable>
+</resources>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.CreditReportFragment">
+
+    <TextView
+        android:id="@+id/creditReportTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/your_credit_report_title"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <uk.co.freemimp.democreditreport.ui.CreditReportPointsView
+        android:id="@+id/pointsProgress"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="24dp"
+        app:circleBackgroundColor="@color/white"
+        app:innerArcColor="@color/teal_200"
+        app:innerArcLineWidth="@dimen/inner_arc_line_width"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/creditReportTitle"
+        app:outerArcColor="@color/black"
+        app:outerArcLineWidth="@dimen/outer_arc_line_width" />
+
+    <TextView
+        android:id="@+id/creditReportBody1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:text="@string/your_credit_score_is_body"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/pointsProgress" />
+
+    <TextView
+        android:id="@+id/creditReportBodyMaxPoints"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="@+id/creditReportBodyPoints"
+        app:layout_constraintStart_toStartOf="@+id/creditReportBodyPoints"
+        app:layout_constraintTop_toBottomOf="@+id/creditReportBodyPoints"
+        tools:text="out of 700" />
+
+    <TextView
+        android:id="@+id/creditReportBodyPoints"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+        app:layout_constraintEnd_toEndOf="@+id/creditReportBody1"
+        app:layout_constraintStart_toStartOf="@+id/creditReportBody1"
+        app:layout_constraintTop_toBottomOf="@+id/creditReportBody1"
+        tools:text="345" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
