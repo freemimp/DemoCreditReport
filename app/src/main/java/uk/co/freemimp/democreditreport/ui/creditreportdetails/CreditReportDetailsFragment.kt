@@ -5,8 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.google.android.material.snackbar.BaseTransientBottomBar
+import com.google.android.material.snackbar.Snackbar
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import uk.co.freemimp.democreditreport.R
 import uk.co.freemimp.democreditreport.databinding.CreditReportDetailsFragmentBinding
+import uk.co.freemimp.democreditreport.mvvm.EventObserver
 
 class CreditReportDetailsFragment : Fragment() {
 
@@ -30,15 +34,49 @@ class CreditReportDetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.getDetails()
+        viewModel.getCreditReportDetails()
 
-        viewModel.equifaxScoreBandDescription.observe(viewLifecycleOwner) {
-            binding.id.text = it
-        }
+        viewModel.equifaxScoreDescription.observe(viewLifecycleOwner, EventObserver {
+            binding.equifaxScoreDescription.text = getString(R.string.equifax_score_description, it)
+        })
+        viewModel.equifaxScoreBand.observe(viewLifecycleOwner, EventObserver {
+            binding.equifaxScoreBand.text = getString(R.string.equifax_score_band, it)
+        })
+        viewModel.daysTillUpdate.observe(viewLifecycleOwner, EventObserver {
+            binding.daysTillUpdate.text = getString(R.string.days_until_update, it)
+        })
+        viewModel.shortTermDebt.observe(viewLifecycleOwner, EventObserver {
+            binding.shortTermDebt.text = getString(R.string.short_term_debt, it)
+        })
+        viewModel.shortTermDebtLimit.observe(viewLifecycleOwner, EventObserver {
+            binding.shortTermDebtLimit.text = getString(R.string.short_term_debt_limit, it)
+        })
+        viewModel.shortTermCreditUsedPercentage.observe(viewLifecycleOwner, EventObserver {
+            binding.shortTermCreditUsedPercentage.text =
+                getString(R.string.short_term_debt_used, it)
+        })
+        viewModel.longTermDebt.observe(viewLifecycleOwner, EventObserver {
+            binding.longTermDebt.text = getString(R.string.long_term_debt_used, it)
+        })
+        viewModel.showError.observe(viewLifecycleOwner, EventObserver { showSnackBar(show = it) })
     }
 
     override fun onDestroyView() {
         _binding = null
         super.onDestroyView()
+    }
+
+    private fun showSnackBar(show: Boolean) {
+        val snackbar = Snackbar.make(
+            binding.root,
+            getString(R.string.error),
+            BaseTransientBottomBar.LENGTH_LONG
+        )
+            .setAction(R.string.retry) { viewModel.getCreditReportDetails() }
+        if (show) {
+            snackbar.show()
+        } else {
+            snackbar.dismiss()
+        }
     }
 }

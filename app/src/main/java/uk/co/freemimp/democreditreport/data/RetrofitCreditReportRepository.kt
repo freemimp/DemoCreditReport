@@ -16,15 +16,8 @@ class RetrofitCreditReportRepository constructor(
                 CreditReportDetails(
                     requireNotNull(response.body()).creditReportInfo.percentageCreditUsed,
                     requireNotNull(response.body()).creditReportInfo.currentShortTermDebt,
-                    requireNotNull(response.body()).creditReportInfo.currentShortTermNonPromotionalDebt,
                     requireNotNull(response.body()).creditReportInfo.currentShortTermCreditLimit,
-                    requireNotNull(response.body()).creditReportInfo.currentShortTermCreditUtilisation,
-                    requireNotNull(response.body()).creditReportInfo.changeInShortTermDebt,
                     requireNotNull(response.body()).creditReportInfo.currentLongTermDebt,
-                    requireNotNull(response.body()).creditReportInfo.currentLongTermNonPromotionalDebt,
-                    requireNotNull(response.body()).creditReportInfo.changeInLongTermDebt,
-                    requireNotNull(response.body()).creditReportInfo.numPositiveScoreFactors,
-                    requireNotNull(response.body()).creditReportInfo.numNegativeScoreFactors,
                     requireNotNull(response.body()).creditReportInfo.equifaxScoreBand,
                     requireNotNull(response.body()).creditReportInfo.equifaxScoreBandDescription,
                     requireNotNull(response.body()).creditReportInfo.daysUntilNextReport
