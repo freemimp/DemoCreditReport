@@ -2,4 +2,7 @@
     <string name="app_name">DemoCreditReport</string>
     <string name="your_credit_score_is_body">Your credit score is</string>
     <string name="your_credit_report_title">Your Credit Report</string>
+    <string name="max_points_body">out of %1$s"</string>
+    <string name="error">Something went wrong, please try again!</string>
+    <string name="retry">Retry</string>
 </resources>

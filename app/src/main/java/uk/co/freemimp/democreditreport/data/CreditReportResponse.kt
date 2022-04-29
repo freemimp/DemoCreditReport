@@ -17,7 +17,7 @@ data class CreditReportResponse(
     @Json(name = "coachingSummary")
     val coachingSummary: CoachingSummary,
     @Json(name = "augmentedCreditScore")
-    val augmentedCreditScore: Any?
+    val augmentedCreditScore: Int?
 ) {
     @JsonClass(generateAdapter = true)
     data class CreditReportInfo(
