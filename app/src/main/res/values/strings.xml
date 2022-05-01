@@ -13,8 +13,8 @@
     <string name="days_until_update">Days Left Till Update: %1$d</string>
     <string name="short_term_debt">Short term debt: £%1$d</string>
     <string name="short_term_debt_limit">Short term debt limit: £%1$d</string>
-    <string name="short_term_debt_used">Short term debt used: %1$d%%</string>
-    <string name="long_term_debt_used">Long term debt: £%1$d</string>
+    <string name="percentage_debt_used">Percentage debt used: %1$d%%</string>
+    <string name="long_term_debt">Long term debt: £%1$d</string>
 
 <!--    Error-->
     <string name="error">Something went wrong, please try again!</string>

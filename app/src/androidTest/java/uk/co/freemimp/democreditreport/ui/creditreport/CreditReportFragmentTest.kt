@@ -18,7 +18,7 @@ import uk.co.freemimp.democreditreport.ui.creditreport.koin.testModuleFailure
 import uk.co.freemimp.democreditreport.ui.creditreport.koin.testModuleSuccess
 
 @RunWith(AndroidJUnit4::class)
-class CreditReportFragmentsTests {
+class CreditReportFragmentTests {
 
     @Test
     fun givenActivityStarts_whenAllCallsAreSuccessful_thenShowFragmentWithAllDetailsAndInnerArc() {
@@ -37,7 +37,8 @@ class CreditReportFragmentsTests {
         loadKoinModules(testModuleSuccess)
         launchActivity<MainActivity>().use {
             onView(withId(R.id.pointsProgress)).perform(click())
-            onView(withId(R.id.id)).check(matches(withText("Excellent")))
+
+            onView(withId(R.id.creditReportDetailsTitle)).check(matches(isDisplayed()))
         }
 
         unloadKoinModules(testModuleSuccess)

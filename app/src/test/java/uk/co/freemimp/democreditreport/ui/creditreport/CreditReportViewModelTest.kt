@@ -11,6 +11,7 @@ import io.mockk.junit5.MockKExtension
 import io.mockk.mockk
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import uk.co.freemimp.democreditreport.domain.models.CreditScore
@@ -35,7 +36,7 @@ internal class CreditReportViewModelTest {
     private lateinit var showErrorObserver: Observer<Event<Boolean>>
 
     @MockK
-    private lateinit var usecase: GetCreditScoreUseCase
+    private lateinit var useCase: GetCreditScoreUseCase
 
     @InjectMockKs
     private lateinit var sut: CreditReportViewModel
@@ -49,17 +50,18 @@ internal class CreditReportViewModelTest {
     }
 
     @Test
-    fun `given getCreditData is executed,when use case call is successful, then trigger current score, max score and inner arch angle observers only `() {
+    @DisplayName("given getCreditScore is executed,when use case call is successful, then trigger current score, max score and inner arch angle observers with correct values and show error with false")
+    fun `given getCreditScore is executed,when use case call is successful, then trigger observers with correct values and show error with false`() {
         val creditScore = mockk<CreditScore> {
             every { this@mockk.currentScore } returns CURRENT_POINTS
             every { this@mockk.maxScore } returns MAX_POINTS
         }
-        coEvery { usecase.execute() } returns creditScore
+        coEvery { useCase.execute() } returns creditScore
 
         sut.getCreditScore()
 
         coVerifySequence {
-            usecase.execute()
+            useCase.execute()
             currentScoreObserver.onChanged(withArg {
                 assertEquals(
                     "$CURRENT_POINTS",
@@ -68,17 +70,19 @@ internal class CreditReportViewModelTest {
             })
             maxScoreObserver.onChanged(withArg { assertEquals("$MAX_POINTS", it.peekContent()) })
             innerArchAngleObserver.onChanged(withArg { assertEquals(ANGLE, it.peekContent()) })
+            showErrorObserver.onChanged(withArg { assertFalse(it.peekContent()) })
         }
     }
 
     @Test
-    fun `given getCreditData is executed,when use case call is NOT successful, then trigger current score, max score, inner arch angle and show error observers `() {
-        coEvery { usecase.execute() } throws TestException
+    @DisplayName("given getCreditScore is executed,when use case call is NOT successful, then trigger current score and max score with _???_, inner arch angle with 360 degrees and show error observer with true")
+    fun `given getCreditScore is executed,when use case call is NOT successful, then trigger observers and show error with true`() {
+        coEvery { useCase.execute() } throws TestException
 
         sut.getCreditScore()
 
         coVerifySequence {
-            usecase.execute()
+            useCase.execute()
             showErrorObserver.onChanged(withArg {
                 assertTrue(it.peekContent())
             })

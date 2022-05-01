@@ -14,7 +14,6 @@ import uk.co.freemimp.democreditreport.mvvm.EventObserver
 
 class CreditReportDetailsFragment : Fragment() {
 
-
     private val viewModel by viewModel<CreditReportDetailsViewModel>()
 
     private var _binding: CreditReportDetailsFragmentBinding? = null
@@ -45,18 +44,18 @@ class CreditReportDetailsFragment : Fragment() {
         viewModel.daysTillUpdate.observe(viewLifecycleOwner, EventObserver {
             binding.daysTillUpdate.text = getString(R.string.days_until_update, it)
         })
-        viewModel.shortTermDebt.observe(viewLifecycleOwner, EventObserver {
+        viewModel.currentShortTermDebt.observe(viewLifecycleOwner, EventObserver {
             binding.shortTermDebt.text = getString(R.string.short_term_debt, it)
         })
-        viewModel.shortTermDebtLimit.observe(viewLifecycleOwner, EventObserver {
+        viewModel.currentShortTermDebtLimit.observe(viewLifecycleOwner, EventObserver {
             binding.shortTermDebtLimit.text = getString(R.string.short_term_debt_limit, it)
         })
-        viewModel.shortTermCreditUsedPercentage.observe(viewLifecycleOwner, EventObserver {
-            binding.shortTermCreditUsedPercentage.text =
-                getString(R.string.short_term_debt_used, it)
+        viewModel.percentageCreditUsed.observe(viewLifecycleOwner, EventObserver {
+            binding.percentageCreditUsed.text =
+                getString(R.string.percentage_debt_used, it)
         })
-        viewModel.longTermDebt.observe(viewLifecycleOwner, EventObserver {
-            binding.longTermDebt.text = getString(R.string.long_term_debt_used, it)
+        viewModel.currentLongTermDebt.observe(viewLifecycleOwner, EventObserver {
+            binding.longTermDebt.text = getString(R.string.long_term_debt, it)
         })
         viewModel.showError.observe(viewLifecycleOwner, EventObserver { showSnackBar(show = it) })
     }

@@ -8,7 +8,7 @@ import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.Interpolator
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.google.android.material.snackbar.BaseTransientBottomBar.LENGTH_LONG
+import com.google.android.material.snackbar.BaseTransientBottomBar.LENGTH_INDEFINITE
 import com.google.android.material.snackbar.Snackbar
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import uk.co.freemimp.democreditreport.R
@@ -66,7 +66,7 @@ class CreditReportFragment : Fragment() {
         val snackbar = Snackbar.make(
             binding.root,
             getString(R.string.error),
-            LENGTH_LONG
+            LENGTH_INDEFINITE
         )
             .setAction(R.string.retry) { viewModel.getCreditScore() }
         if (show) {

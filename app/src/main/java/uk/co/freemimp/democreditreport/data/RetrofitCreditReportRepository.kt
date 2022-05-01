@@ -2,26 +2,22 @@ package uk.co.freemimp.democreditreport.data
 
 import retrofit2.HttpException
 import uk.co.freemimp.democreditreport.domain.CreditReportRepository
+import uk.co.freemimp.democreditreport.domain.mapper.CreditReportDetailsMapper
+import uk.co.freemimp.democreditreport.domain.mapper.CreditScoreMapper
 import uk.co.freemimp.democreditreport.domain.models.CreditReportDetails
 import uk.co.freemimp.democreditreport.domain.models.CreditScore
 
 class RetrofitCreditReportRepository constructor(
-    private val creditReportService: CreditReportService
+    private val creditReportService: CreditReportService,
+    private val creditScoreMapper: CreditScoreMapper,
+    private val creditReportDetailsMapper: CreditReportDetailsMapper
 ) : CreditReportRepository {
 
-    override suspend fun getCreditReportDetails(): CreditReportDetails {
+    override suspend fun getCreditScore(): CreditScore {
         return try {
             val response = creditReportService.getCreditReport()
             if (response.isSuccessful) {
-                CreditReportDetails(
-                    requireNotNull(response.body()).creditReportInfo.percentageCreditUsed,
-                    requireNotNull(response.body()).creditReportInfo.currentShortTermDebt,
-                    requireNotNull(response.body()).creditReportInfo.currentShortTermCreditLimit,
-                    requireNotNull(response.body()).creditReportInfo.currentLongTermDebt,
-                    requireNotNull(response.body()).creditReportInfo.equifaxScoreBand,
-                    requireNotNull(response.body()).creditReportInfo.equifaxScoreBandDescription,
-                    requireNotNull(response.body()).creditReportInfo.daysUntilNextReport
-                )
+                creditScoreMapper.map(requireNotNull(response.body()))
             } else {
                 throw HttpException(response)
             }
@@ -30,14 +26,11 @@ class RetrofitCreditReportRepository constructor(
         }
     }
 
-    override suspend fun getCreditScore(): CreditScore {
+    override suspend fun getCreditReportDetails(): CreditReportDetails {
         return try {
             val response = creditReportService.getCreditReport()
             if (response.isSuccessful) {
-                CreditScore(
-                    requireNotNull(response.body()).creditReportInfo.score,
-                    requireNotNull(response.body()).creditReportInfo.maxScoreValue
-                )
+                creditReportDetailsMapper.map(requireNotNull(response.body()))
             } else {
                 throw HttpException(response)
             }

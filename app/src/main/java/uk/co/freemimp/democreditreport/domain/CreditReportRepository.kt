@@ -4,6 +4,6 @@ import uk.co.freemimp.democreditreport.domain.models.CreditReportDetails
 import uk.co.freemimp.democreditreport.domain.models.CreditScore
 
 interface CreditReportRepository {
-    suspend fun getCreditReportDetails(): CreditReportDetails
     suspend fun getCreditScore(): CreditScore
+    suspend fun getCreditReportDetails(): CreditReportDetails
 }

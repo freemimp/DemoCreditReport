@@ -22,31 +22,31 @@ class CreditReportDetailsViewModel constructor(
     private val _daysTillUpdate = MutableLiveData<Event<Int>>()
     val daysTillUpdate: LiveData<Event<Int>> = _daysTillUpdate
 
-    private val _shortTermDebt = MutableLiveData<Event<Int>>()
-    val shortTermDebt: LiveData<Event<Int>> = _shortTermDebt
+    private val _currentShortTermDebt = MutableLiveData<Event<Int>>()
+    val currentShortTermDebt: LiveData<Event<Int>> = _currentShortTermDebt
 
-    private val _shortTermDebtLimit = MutableLiveData<Event<Int>>()
-    val shortTermDebtLimit: LiveData<Event<Int>> = _shortTermDebtLimit
+    private val _currentShortTermDebtLimit = MutableLiveData<Event<Int>>()
+    val currentShortTermDebtLimit: LiveData<Event<Int>> = _currentShortTermDebtLimit
 
-    private val _shortTermCreditUsedPercentage = MutableLiveData<Event<Int>>()
-    val shortTermCreditUsedPercentage: LiveData<Event<Int>> = _shortTermCreditUsedPercentage
+    private val _percentageCreditUsed = MutableLiveData<Event<Int>>()
+    val percentageCreditUsed: LiveData<Event<Int>> = _percentageCreditUsed
 
-    private val _longTermDebt = MutableLiveData<Event<Int>>()
-    val longTermDebt: LiveData<Event<Int>> = _longTermDebt
+    private val _currentLongTermDebt = MutableLiveData<Event<Int>>()
+    val currentLongTermDebt: LiveData<Event<Int>> = _currentLongTermDebt
 
     private val _showError = MutableLiveData<Event<Boolean>>()
     val showError: LiveData<Event<Boolean>> = _showError
 
     private val exceptionHandler = CoroutineExceptionHandler { _, _ ->
         _showError.postValue(Event(true))
+
         _equifaxScoreDescription.postValue(Event(QUESTION_MARKS))
         _equifaxScoreBand.postValue(Event(0))
         _daysTillUpdate.postValue(Event(0))
-        _shortTermDebt.postValue(Event(0))
-        _shortTermDebtLimit.postValue(Event(0))
-        _shortTermCreditUsedPercentage.postValue(Event(0))
-        _longTermDebt.postValue(Event(0))
-        _daysTillUpdate.postValue(Event(0))
+        _currentShortTermDebt.postValue(Event(0))
+        _currentShortTermDebtLimit.postValue(Event(0))
+        _percentageCreditUsed.postValue(Event(0))
+        _currentLongTermDebt.postValue(Event(0))
     }
 
 
@@ -57,11 +57,10 @@ class CreditReportDetailsViewModel constructor(
             _equifaxScoreDescription.postValue(Event(details.equifaxScoreBandDescription))
             _equifaxScoreBand.postValue(Event(details.equifaxScoreBand))
             _daysTillUpdate.postValue(Event(details.daysUntilNextReport))
-            _shortTermDebt.postValue(Event(details.currentShortTermDebt))
-            _shortTermDebtLimit.postValue(Event(details.currentShortTermCreditLimit))
-            _shortTermCreditUsedPercentage.postValue(Event(details.percentageCreditUsed))
-            _longTermDebt.postValue(Event(details.currentLongTermDebt))
-            _daysTillUpdate.postValue(Event(details.daysUntilNextReport))
+            _currentShortTermDebt.postValue(Event(details.currentShortTermDebt))
+            _currentShortTermDebtLimit.postValue(Event(details.currentShortTermCreditLimit))
+            _percentageCreditUsed.postValue(Event(details.percentageCreditUsed))
+            _currentLongTermDebt.postValue(Event(details.currentLongTermDebt))
 
             _showError.postValue(Event(false))
         }

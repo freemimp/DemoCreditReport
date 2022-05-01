@@ -19,6 +19,12 @@ val testModuleSuccess = module {
         coEvery { this@mockk.getCreditScore() } returns CreditScore(CURRENT_POINTS, MAX_POINTS)
         coEvery { this@mockk.getCreditReportDetails() } returns mockk (relaxed = true) {
             every { equifaxScoreBandDescription } returns  "Excellent"
+            every { equifaxScoreBand } returns  1
+            every { daysUntilNextReport } returns  1
+            every { currentShortTermDebt } returns  1
+            every { currentShortTermCreditLimit } returns  1
+            every { percentageCreditUsed } returns  1
+            every { currentLongTermDebt } returns  1
         }
     } }
     single { GetCreditScoreUseCase(get()) }
@@ -32,7 +38,13 @@ val testModuleFailure = module {
     single<CreditReportRepository> { mockk<RetrofitCreditReportRepository>() {
         coEvery { this@mockk.getCreditScore() } throws  HttpException(mockk(relaxed = true))
         coEvery { this@mockk.getCreditReportDetails() } returns mockk (relaxed = true) {
-            every { equifaxScoreBandDescription } returns  "Excellent"
+            every { equifaxScoreBandDescription } returns  "???"
+            every { equifaxScoreBand } returns  0
+            every { daysUntilNextReport } returns  0
+            every { currentShortTermDebt } returns  0
+            every { currentShortTermCreditLimit } returns  0
+            every { percentageCreditUsed } returns  0
+            every { currentLongTermDebt } returns  0
         }
     } }
     single { GetCreditScoreUseCase(get()) }

@@ -6,6 +6,7 @@ import io.mockk.impl.annotations.InjectMockKs
 import io.mockk.impl.annotations.MockK
 import io.mockk.impl.annotations.RelaxedMockK
 import io.mockk.junit5.MockKExtension
+import io.mockk.mockk
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.DisplayName
@@ -15,6 +16,8 @@ import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.api.extension.ExtendWith
 import retrofit2.HttpException
 import retrofit2.Response
+import uk.co.freemimp.democreditreport.domain.mapper.CreditReportDetailsMapper
+import uk.co.freemimp.democreditreport.domain.mapper.CreditScoreMapper
 import uk.co.freemimp.democreditreport.domain.models.CreditReportDetails
 import uk.co.freemimp.democreditreport.domain.models.CreditScore
 import utils.TestException
@@ -24,7 +27,10 @@ internal class RetrofitCreditReportRepositoryTest {
 
     @MockK
     private lateinit var service: CreditReportService
-
+    @MockK
+    private lateinit var creditScoreMapper: CreditScoreMapper
+    @MockK
+    private lateinit var creditReportDetailsMapper: CreditReportDetailsMapper
     @InjectMockKs
     private lateinit var sut: RetrofitCreditReportRepository
 
@@ -37,17 +43,20 @@ internal class RetrofitCreditReportRepositoryTest {
     @Nested
     @DisplayName("given getCreditReport is invoked, ")
     inner class GetCreditScore {
+
         @Test
         fun `when service call is successful, then return CreditScore`() {
             runBlocking {
+                val creditScore = mockk<CreditScore>()
                 every { response.isSuccessful } returns true
                 every { response.body() } returns creditReportResponse
                 coEvery { service.getCreditReport() } returns response
+                every { creditScoreMapper.map(any()) } returns creditScore
 
-                val expected = CreditScore(0, 0)
+
                 val actual = sut.getCreditScore()
 
-                assertEquals(expected, actual)
+                assertEquals(creditScore, actual)
             }
         }
 
@@ -78,29 +87,15 @@ internal class RetrofitCreditReportRepositoryTest {
         @Test
         fun `when service call is successful, then return CreditReportDetails`() {
             runBlocking {
+                val creditReportDetails = mockk<CreditReportDetails>()
+                every { creditReportDetailsMapper.map(any()) } returns creditReportDetails
                 every { response.isSuccessful } returns true
                 every { response.body() } returns creditReportResponse
                 coEvery { service.getCreditReport() } returns response
 
-                val expected = CreditReportDetails(
-                    0,
-                    0,
-                    0,
-                    0,
-                    0,
-                    0,
-                    0,
-                    0,
-                    0,
-                    0,
-                    0,
-                    0,
-                    "",
-                    0
-                )
                 val actual = sut.getCreditReportDetails()
 
-                assertEquals(expected, actual)
+                assertEquals(creditReportDetails, actual)
             }
         }
 
