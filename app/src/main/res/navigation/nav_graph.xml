@@ -7,7 +7,16 @@
 
     <fragment
         android:id="@+id/creditReportFragment"
-        android:name="uk.co.freemimp.democreditreport.ui.CreditReportFragment"
+        android:name="uk.co.freemimp.democreditreport.ui.creditreport.CreditReportFragment"
         android:label="credit_report_fragment"
-        tools:layout="@layout/credit_report_fragment" />
+        tools:layout="@layout/credit_report_fragment" >
+        <action
+            android:id="@+id/action_creditReportFragment_to_creditReportDetailsFragment"
+            app:destination="@id/creditReportDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/creditReportDetailsFragment"
+        android:name="uk.co.freemimp.democreditreport.ui.creditreportdetails.CreditReportDetailsFragment"
+        android:label="credit_report_details_fragment"
+        tools:layout="@layout/credit_report_details_fragment" />
 </navigation>

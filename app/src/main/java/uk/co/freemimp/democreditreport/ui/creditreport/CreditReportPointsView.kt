@@ -1,4 +1,4 @@
-package uk.co.freemimp.democreditreport.ui
+package uk.co.freemimp.democreditreport.ui.creditreport
 
 import android.animation.ValueAnimator
 import android.content.Context
@@ -200,13 +200,13 @@ class CreditReportPointsView@JvmOverloads constructor(
         this.interpolator = interpolator
     }
 
-    fun setProgress(fromDegrees: Float, toDegrees: Float) {
+    fun setProgress(toDegrees: Float) {
         if (this::animator.isInitialized && animator.isRunning) {
             animator.cancel()
         }
 
         animator = ValueAnimator.ofFloat(
-            fromDegrees.parseDegrees(),
+            0f.parseDegrees(),
             toDegrees.parseDegrees()
         )
             .apply {

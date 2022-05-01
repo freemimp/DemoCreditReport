@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".ui.creditreportdetails.CreditReportDetailsFragment">
+
+    <TextView
+        android:id="@+id/creditReportDetailsTitle"
+        style="@style/TextAppearance.AppCompat.Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="@string/your_credit_report_details_title" />
+
+    <LinearLayout
+        android:id="@+id/equifaxSection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="fill_horizontal"
+        android:orientation="horizontal"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        app:layout_constraintTop_toBottomOf="@id/creditReportDetailsTitle">
+
+        <TextView
+            android:id="@+id/equifaxScoreDescription"
+            style="@style/TextAppearance.AppCompat.Body2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            tools:text="Text1" />
+
+        <TextView
+            android:id="@+id/equifaxScoreBand"
+            style="@style/TextAppearance.AppCompat.Body2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            tools:text="Text1" />
+
+        <TextView
+            android:id="@+id/daysTillUpdate"
+            style="@style/TextAppearance.AppCompat.Body2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            tools:text="Text1" />
+    </LinearLayout>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        app:elevation="@dimen/cardview_default_elevation"
+        app:cardCornerRadius="10dp"
+        android:background="@color/primaryDarkColor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/equifaxSection">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/shortTermDebt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="5000" />
+
+            <TextView
+                android:id="@+id/shortTermDebtLimit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="10000" />
+
+            <TextView
+                android:id="@+id/percentageCreditUsed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="50%" />
+
+            <TextView
+                android:id="@+id/longTermDebt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="222222" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

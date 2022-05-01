@@ -1,5 +1,22 @@
 <resources>
     <string name="app_name">DemoCreditReport</string>
-    <string name="your_credit_score_is_body">Your credit score is</string>
+
+<!--    Credit Report -->
     <string name="your_credit_report_title">Your Credit Report</string>
+    <string name="your_credit_score_is_body">Your credit score is</string>
+    <string name="max_points_body">out of %1$s"</string>
+
+<!--    Credit Report Details-->
+    <string name="your_credit_report_details_title">Your Credit Report Details</string>
+    <string name="equifax_score_description">Equifax Score Description: %1$s</string>
+    <string name="equifax_score_band">Equifax Score Band: %1$d</string>
+    <string name="days_until_update">Days Left Till Update: %1$d</string>
+    <string name="short_term_debt">Short term debt: £%1$d</string>
+    <string name="short_term_debt_limit">Short term debt limit: £%1$d</string>
+    <string name="percentage_debt_used">Percentage debt used: %1$d%%</string>
+    <string name="long_term_debt">Long term debt: £%1$d</string>
+
+<!--    Error-->
+    <string name="error">Something went wrong, please try again!</string>
+    <string name="retry">Retry</string>
 </resources>
