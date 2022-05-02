@@ -43,7 +43,7 @@ internal class CreditReportServiceTest {
     }
 
     @Nested
-    @DisplayName("given get details is invoked, ")
+    @DisplayName("given getCreditReport is invoked, ")
     inner class GetDetails {
 
         @Test
