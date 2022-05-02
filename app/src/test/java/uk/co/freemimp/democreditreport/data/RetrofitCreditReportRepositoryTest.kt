@@ -41,7 +41,7 @@ internal class RetrofitCreditReportRepositoryTest {
     private lateinit var creditReportResponse: CreditReportResponse
 
     @Nested
-    @DisplayName("given getCreditReport is invoked, ")
+    @DisplayName("given getCreditScore is invoked, ")
     inner class GetCreditScore {
 
         @Test
